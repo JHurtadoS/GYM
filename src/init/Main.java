@@ -4,20 +4,44 @@
  */
 package init;
 
-import Modelo.Usuario;
+import modelo.Usuario;
 import controller.UsuarioController;
 
 /**
  *
  * @author juane
  */
+
+/*
+
+@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_usuario", nullable = false)
+    private Integer idUsuario;
+    @Column(name = "documento")
+    private Integer documento;
+    @Column(name = "nombre", length = 45)
+    private String nombre;
+    @Column(name = "apellidos", length = 45)
+    private String apellidos;
+    @Column(name = "celular", length = 255)
+    private String celular;
+    @Column(name = "genero", length = 9)
+    private String genero;
+    @Column(name = "rh", length = 5)
+    private String rh;
+
+
+*/
 public class Main {
 
     static UsuarioController uControll = new UsuarioController();
     
     public static void main(String[] args) {
-        Usuario usuari = new Usuario (01, 12345678, "karen", "tovar", 1234567890, "femenino", "o+");
-        
+        Usuario u = new Usuario(null, 125678, "karen", "tovar", "1234567890", "femenino", "o+");
+        uControll.create(u);
     }
     
 }
+

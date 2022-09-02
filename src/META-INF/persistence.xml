@@ -20,6 +20,24 @@
     <class>Modelo.Peticiones</class>
     <class>Modelo.Herramienta</class>
     <class>Modelo.PlanNutricion</class>
+    <class>modelo.Rutina</class>
+    <class>modelo.Herramienta</class>
+    <class>modelo.Inscripcion</class>
+    <class>modelo.Usuario</class>
+    <class>modelo.Evento</class>
+    <class>modelo.Alimento</class>
+    <class>modelo.HistorialActividades</class>
+    <class>modelo.Credenciales</class>
+    <class>modelo.PlanNutricion</class>
+    <class>modelo.Cita</class>
+    <class>modelo.Ejercicio</class>
+    <class>modelo.Funcional</class>
+    <class>modelo.Instructor</class>
+    <class>modelo.Peticiones</class>
+    <class>modelo.Consumidor</class>
+    <class>modelo.Tipo</class>
+    <class>modelo.Enfermero</class>
+    <class>modelo.Actividad</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gimnasio?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

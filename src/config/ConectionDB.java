@@ -5,17 +5,28 @@
 package config;
 
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 
 /**
  *
  * @author juane
  */
-public class ConectionDB {
-    private static ConectionDB instance = new ConectionDB();
-    private EntityManagerFactory factory;
-    
-    private ConectionDB() {
-    factory = persistence.createEntityManagerFactory("GymPU");
-}
+public class ConectionDB{
+	
+	private static ConectionDB instance = new ConectionDB();
+	private EntityManagerFactory factory;
+	
+	private ConectionDB(){
+		factory = Persistence.createEntityManagerFactory("GymPU");
+	}
+	
+	public static ConectionDB getInstance(){
+		return instance;
+	}
+	
+	public EntityManagerFactory getFactory(){
+		return factory;
+	}
+	
 }
