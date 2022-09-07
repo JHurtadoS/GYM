@@ -8,18 +8,18 @@ import config.ConectionDB;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import modelo.Funcional;
+import modelo.Actividad;
 
 /**
  *
  * @author juane
  */
-public class FuncionalController {
-    private EntityManager entityManager() {
+public class ActividadControlller {
+        private EntityManager entityManager() {
         return ConectionDB.getInstance().getFactory().createEntityManager();
     }
     
-     public void create(Funcional obj) {
+     public void create(Actividad obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
@@ -30,22 +30,21 @@ public class FuncionalController {
         }
     }
 
-    public void update(Funcional obj) {
+    public void update(Actividad obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
-            em.merge(obj);
+            em.persist(obj);
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();
         }
     }
 
-    public void delete(Funcional obj) {
+    public void delete(Actividad obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
-            
             em.remove(em.merge(obj));
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -53,15 +52,8 @@ public class FuncionalController {
         }
     }
 
-    public List<Funcional> findAll() {
-        Query qr = this.entityManager().createQuery("SELECT u FROM Funcional u");
-        return qr.getResultList();
-    }
-    
-    public List<Funcional>  FindFuncionalByid(int id){
-        Query qr;
-        qr = this.entityManager().createQuery("SELECT u FROM Funcional u WHERE u.id="+id);
-        //qr.setParameter("IdVal", id);
+    public List<Actividad> findAll() {
+        Query qr = this.entityManager().createQuery("SELECT u FROM Actividad u");
         return qr.getResultList();
     }
 }

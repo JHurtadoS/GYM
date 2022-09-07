@@ -14,8 +14,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -29,8 +27,15 @@ import javax.persistence.Table;
 @Table(name = "actividad")
 @NamedQueries({
     @NamedQuery(name = "Actividad.findAll", query = "SELECT a FROM Actividad a"),
-    @NamedQuery(name = "Actividad.findById", query = "SELECT a FROM Actividad a WHERE a.id = :id")})
+    @NamedQuery(name = "Actividad.findById", query = "SELECT a FROM Actividad a WHERE a.id = :id"),
+    @NamedQuery(name = "Actividad.findByNombre", query = "SELECT a FROM Actividad a WHERE a.nombre = :nombre"),
+    @NamedQuery(name = "Actividad.findByDescripcion", query = "SELECT a FROM Actividad a WHERE a.descripcion = :descripcion")})
 public class Actividad implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadId", fetch = FetchType.LAZY)
+    private Collection<Rutina> rutinaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadId", fetch = FetchType.LAZY)
+    private Collection<Evento> eventoCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,21 +43,22 @@ public class Actividad implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id")
     private Integer id;
+    @Column(name = "Nombre")
+    private String nombre;
+    @Column(name = "Descripcion")
+    private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadId", fetch = FetchType.LAZY)
-    private Collection<Rutina> rutinaCollection;
-    @JoinColumn(name = "historial_actividades_id", referencedColumnName = "Id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private HistorialActividades historialActividadesId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadId", fetch = FetchType.LAZY)
-    private Collection<Evento> eventoCollection;
+    private Collection<HistorialActividades> historialActividadesCollection;
 
     public Actividad() {
     }
 
-    public Actividad(Integer id, HistorialActividades historialActividadesId) {
+    public Actividad(Integer id, String nombre, String descripcion) {
         this.id = id;
-        this.historialActividadesId = historialActividadesId;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
+    
 
     public Actividad(Integer id) {
         this.id = id;
@@ -66,28 +72,28 @@ public class Actividad implements Serializable {
         this.id = id;
     }
 
-    public Collection<Rutina> getRutinaCollection() {
-        return rutinaCollection;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setRutinaCollection(Collection<Rutina> rutinaCollection) {
-        this.rutinaCollection = rutinaCollection;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public HistorialActividades getHistorialActividadesId() {
-        return historialActividadesId;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setHistorialActividadesId(HistorialActividades historialActividadesId) {
-        this.historialActividadesId = historialActividadesId;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public Collection<Evento> getEventoCollection() {
-        return eventoCollection;
+    public Collection<HistorialActividades> getHistorialActividadesCollection() {
+        return historialActividadesCollection;
     }
 
-    public void setEventoCollection(Collection<Evento> eventoCollection) {
-        this.eventoCollection = eventoCollection;
+    public void setHistorialActividadesCollection(Collection<HistorialActividades> historialActividadesCollection) {
+        this.historialActividadesCollection = historialActividadesCollection;
     }
 
     @Override
@@ -112,8 +118,23 @@ public class Actividad implements Serializable {
 
     @Override
     public String toString() {
-        return "Actividad{" + "id=" + id + ", historialActividadesId=" + historialActividadesId + '}';
+        return "modelo.Actividad[ id=" + id + " ]";
     }
 
+    public Collection<Rutina> getRutinaCollection() {
+        return rutinaCollection;
+    }
 
+    public void setRutinaCollection(Collection<Rutina> rutinaCollection) {
+        this.rutinaCollection = rutinaCollection;
+    }
+
+    public Collection<Evento> getEventoCollection() {
+        return eventoCollection;
+    }
+
+    public void setEventoCollection(Collection<Evento> eventoCollection) {
+        this.eventoCollection = eventoCollection;
+    }
+    
 }

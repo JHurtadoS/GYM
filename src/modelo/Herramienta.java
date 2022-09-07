@@ -7,6 +7,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -30,6 +32,9 @@ import javax.persistence.Table;
     @NamedQuery(name = "Herramienta.findByNombre", query = "SELECT h FROM Herramienta h WHERE h.nombre = :nombre"),
     @NamedQuery(name = "Herramienta.findByImagenAsociada", query = "SELECT h FROM Herramienta h WHERE h.imagenAsociada = :imagenAsociada")})
 public class Herramienta implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "herramientaId", fetch = FetchType.LAZY)
+    private Collection<ActividadHasHerramienta> actividadHasHerramientaCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -106,6 +111,14 @@ public class Herramienta implements Serializable {
     @Override
     public String toString() {
         return "modelo.Herramienta[ id=" + id + " ]";
+    }
+
+    public Collection<ActividadHasHerramienta> getActividadHasHerramientaCollection() {
+        return actividadHasHerramientaCollection;
+    }
+
+    public void setActividadHasHerramientaCollection(Collection<ActividadHasHerramienta> actividadHasHerramientaCollection) {
+        this.actividadHasHerramientaCollection = actividadHasHerramientaCollection;
     }
     
 }

@@ -38,6 +38,15 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Evento.findByHoraSalida", query = "SELECT e FROM Evento e WHERE e.horaSalida = :horaSalida")})
 public class Evento implements Serializable {
 
+    @ManyToMany(mappedBy = "eventoCollection", fetch = FetchType.LAZY)
+    private Collection<Consumidor> consumidorCollection;
+    @JoinColumn(name = "instructor_Id", referencedColumnName = "Id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Instructor instructorId;
+    @JoinColumn(name = "Actividad_Id", referencedColumnName = "Id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Actividad actividadId;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,16 +64,16 @@ public class Evento implements Serializable {
     @Column(name = "hora_salida")
     @Temporal(TemporalType.TIME)
     private Date horaSalida;
-    @ManyToMany(mappedBy = "eventoCollection", fetch = FetchType.LAZY)
-    private Collection<Consumidor> consumidorCollection;
-    @JoinColumn(name = "instructor_Id", referencedColumnName = "Id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Instructor instructorId;
-    @JoinColumn(name = "Actividad_Id", referencedColumnName = "Id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Actividad actividadId;
 
     public Evento() {
+    }
+
+    public Evento(Integer id, String nombre, Date fecha, Date horaInicio, Date horaSalida) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.horaInicio = horaInicio;
+        this.horaSalida = horaSalida;
     }
 
     public Evento(Integer id) {
@@ -111,30 +120,6 @@ public class Evento implements Serializable {
         this.horaSalida = horaSalida;
     }
 
-    public Collection<Consumidor> getConsumidorCollection() {
-        return consumidorCollection;
-    }
-
-    public void setConsumidorCollection(Collection<Consumidor> consumidorCollection) {
-        this.consumidorCollection = consumidorCollection;
-    }
-
-    public Instructor getInstructorId() {
-        return instructorId;
-    }
-
-    public void setInstructorId(Instructor instructorId) {
-        this.instructorId = instructorId;
-    }
-
-    public Actividad getActividadId() {
-        return actividadId;
-    }
-
-    public void setActividadId(Actividad actividadId) {
-        this.actividadId = actividadId;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -158,6 +143,30 @@ public class Evento implements Serializable {
     @Override
     public String toString() {
         return "modelo.Evento[ id=" + id + " ]";
+    }
+
+    public Collection<Consumidor> getConsumidorCollection() {
+        return consumidorCollection;
+    }
+
+    public void setConsumidorCollection(Collection<Consumidor> consumidorCollection) {
+        this.consumidorCollection = consumidorCollection;
+    }
+
+    public Instructor getInstructorId() {
+        return instructorId;
+    }
+
+    public void setInstructorId(Instructor instructorId) {
+        this.instructorId = instructorId;
+    }
+
+    public Actividad getActividadId() {
+        return actividadId;
+    }
+
+    public void setActividadId(Actividad actividadId) {
+        this.actividadId = actividadId;
     }
     
 }

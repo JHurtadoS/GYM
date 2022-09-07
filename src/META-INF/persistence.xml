@@ -38,6 +38,7 @@
     <class>modelo.Tipo</class>
     <class>modelo.Enfermero</class>
     <class>modelo.Actividad</class>
+    <class>modelo.ActividadHasHerramienta</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gimnasio?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
