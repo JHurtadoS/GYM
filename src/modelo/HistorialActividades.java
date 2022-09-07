@@ -47,6 +47,11 @@ public class HistorialActividades implements Serializable {
     public HistorialActividades() {
     }
 
+    public HistorialActividades(Integer id, Consumidor consumidorId) {
+        this.id = id;
+        this.consumidorId = consumidorId;
+    }
+
     public HistorialActividades(Integer id) {
         this.id = id;
     }
@@ -97,7 +102,9 @@ public class HistorialActividades implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.HistorialActividades[ id=" + id + " ]";
+        return "HistorialActividades{" + "id=" + id + ", consumidorId=" + consumidorId + '}';
     }
+
+   
     
 }

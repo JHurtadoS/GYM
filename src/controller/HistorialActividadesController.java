@@ -1,42 +1,47 @@
-//karen
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package controller;
 
-import modelo.Usuario;
 import config.ConectionDB;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import modelo.HistorialActividades;
 
-public class UsuarioController {
-
+/**
+ *
+ * @author juane
+ */
+public class HistorialActividadesController {
     private EntityManager entityManager() {
         return ConectionDB.getInstance().getFactory().createEntityManager();
     }
-
-    public void create(Usuario user) {
+    
+     public void create(HistorialActividades obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
-            em.persist(user);
+            em.persist(obj);
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();
         }
     }
 
-    public void update(Usuario user) {
+    public void update(HistorialActividades obj) {
         EntityManager em = this.entityManager();
         try {
-            
             em.getTransaction().begin();
-            em.merge(user);
+            em.persist(obj);
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();
         }
     }
 
-    public void delete(Usuario obj) {
+    public void delete(HistorialActividades obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
@@ -46,11 +51,9 @@ public class UsuarioController {
             em.getTransaction().rollback();
         }
     }
-    
-    //
 
-    public List<Usuario> findAll() {
-        Query qr = this.entityManager().createQuery("SELECT t FROM Usuario t");
+    public List<HistorialActividades> findAll() {
+        Query qr = this.entityManager().createQuery("SELECT u FROM HistorialActividades u");
         return qr.getResultList();
     }
 }

@@ -1,42 +1,49 @@
-//karen
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package controller;
 
-import modelo.Usuario;
 import config.ConectionDB;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import modelo.Alimento;
 
-public class UsuarioController {
+/**
+ *
+ * @author juane
+ */
 
-    private EntityManager entityManager() {
+    public class AlimentoController {
+    
+     private EntityManager entityManager() {
         return ConectionDB.getInstance().getFactory().createEntityManager();
     }
-
-    public void create(Usuario user) {
+    
+     public void create(Alimento obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
-            em.persist(user);
+            em.persist(obj);
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();
         }
     }
 
-    public void update(Usuario user) {
+    public void update(Alimento obj) {
         EntityManager em = this.entityManager();
         try {
-            
             em.getTransaction().begin();
-            em.merge(user);
+            em.persist(obj);
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();
         }
     }
 
-    public void delete(Usuario obj) {
+    public void delete(Alimento obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
@@ -46,11 +53,11 @@ public class UsuarioController {
             em.getTransaction().rollback();
         }
     }
-    
-    //
 
-    public List<Usuario> findAll() {
-        Query qr = this.entityManager().createQuery("SELECT t FROM Usuario t");
+    public List<Alimento> findAll() {
+        Query qr = this.entityManager().createQuery("SELECT u FROM Alimento u");
         return qr.getResultList();
     }
 }
+
+

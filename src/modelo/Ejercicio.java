@@ -59,6 +59,17 @@ public class Ejercicio implements Serializable {
     public Ejercicio() {
     }
 
+    public Ejercicio(Integer id, String videoAsociado, String nombre, String tipo, Float ncalorias) {
+        this.id = id;
+        this.videoAsociado = videoAsociado;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.ncalorias = ncalorias;
+    }
+
+
+    
+
     public Ejercicio(Integer id) {
         this.id = id;
     }
@@ -133,7 +144,9 @@ public class Ejercicio implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Ejercicio[ id=" + id + " ]";
+        return "Ejercicio{" + "id=" + id + ", videoAsociado=" + videoAsociado + ", nombre=" + nombre + ", tipo=" + tipo + ", ncalorias=" + ncalorias + '}';
     }
+
+
     
 }

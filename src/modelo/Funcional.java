@@ -60,6 +60,13 @@ public class Funcional implements Serializable {
     public Funcional() {
     }
 
+    public Funcional(Integer id, Date horaDeEntrada, Date horaDeSalida, Usuario usuarioIdUsuario) {
+        this.id = id;
+        this.horaDeEntrada = horaDeEntrada;
+        this.horaDeSalida = horaDeSalida;
+        this.usuarioIdUsuario = usuarioIdUsuario;
+    }
+
     public Funcional(Integer id) {
         this.id = id;
     }
@@ -134,7 +141,9 @@ public class Funcional implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Funcional[ id=" + id + " ]";
+        return "Funcional{" + "id=" + id + ", horaDeEntrada=" + horaDeEntrada + ", horaDeSalida=" + horaDeSalida + ", usuarioIdUsuario=" + usuarioIdUsuario + '}';
     }
+
+
     
 }

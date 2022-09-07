@@ -49,6 +49,11 @@ public class Actividad implements Serializable {
     public Actividad() {
     }
 
+    public Actividad(Integer id, HistorialActividades historialActividadesId) {
+        this.id = id;
+        this.historialActividadesId = historialActividadesId;
+    }
+
     public Actividad(Integer id) {
         this.id = id;
     }
@@ -107,7 +112,8 @@ public class Actividad implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Actividad[ id=" + id + " ]";
+        return "Actividad{" + "id=" + id + ", historialActividadesId=" + historialActividadesId + '}';
     }
-    
+
+
 }

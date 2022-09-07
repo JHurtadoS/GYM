@@ -1,42 +1,41 @@
-//karen
+
 package controller;
 
-import modelo.Usuario;
 import config.ConectionDB;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import modelo.PlanNutricion;
 
-public class UsuarioController {
-
-    private EntityManager entityManager() {
+public class PlanNutricionController {
+    
+     private EntityManager entityManager() {
         return ConectionDB.getInstance().getFactory().createEntityManager();
     }
-
-    public void create(Usuario user) {
+    
+     public void create(PlanNutricion obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
-            em.persist(user);
+            em.persist(obj);
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();
         }
     }
 
-    public void update(Usuario user) {
+    public void update(PlanNutricion obj) {
         EntityManager em = this.entityManager();
         try {
-            
             em.getTransaction().begin();
-            em.merge(user);
+            em.persist(obj);
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();
         }
     }
 
-    public void delete(Usuario obj) {
+    public void delete(PlanNutricion obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
@@ -46,11 +45,9 @@ public class UsuarioController {
             em.getTransaction().rollback();
         }
     }
-    
-    //
 
-    public List<Usuario> findAll() {
-        Query qr = this.entityManager().createQuery("SELECT t FROM Usuario t");
+    public List<PlanNutricion> findAll() {
+        Query qr = this.entityManager().createQuery("SELECT u FROM PlanNutricion u");
         return qr.getResultList();
     }
 }

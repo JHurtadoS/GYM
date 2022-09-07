@@ -180,7 +180,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Usuario[ idUsuario=" + idUsuario + " ]";
-    }
+        return "Usuario{" + "idUsuario=" + idUsuario + ", documento=" + documento + ", nombre=" + nombre + ", apellidos=" + apellidos + ", celular=" + celular + ", genero=" + genero + ", rh=" + rh + '}';
+    }   
     
 }

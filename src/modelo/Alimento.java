@@ -50,6 +50,15 @@ public class Alimento implements Serializable {
     public Alimento() {
     }
 
+    public Alimento(Integer id, String nombre, String descripcion, String imagenasociada) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.imagenasociada = imagenasociada;
+    }
+
+   
+
     public Alimento(Integer id) {
         this.id = id;
     }
@@ -116,7 +125,7 @@ public class Alimento implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Alimento[ id=" + id + " ]";
+        return "Alimento{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagenasociada=" + imagenasociada + '}';
     }
     
 }

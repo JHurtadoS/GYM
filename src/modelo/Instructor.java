@@ -47,6 +47,11 @@ public class Instructor implements Serializable {
     public Instructor() {
     }
 
+    public Instructor(Integer id, Funcional funcionalId) {
+        this.id = id;
+        this.funcionalId = funcionalId;
+    }
+
     public Instructor(Integer id) {
         this.id = id;
     }
@@ -97,7 +102,9 @@ public class Instructor implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Instructor[ id=" + id + " ]";
+        return "Instructor{" + "id=" + id + ", funcionalId=" + funcionalId + '}';
     }
+
+   
     
 }

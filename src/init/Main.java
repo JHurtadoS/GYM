@@ -6,42 +6,27 @@ package init;
 
 import modelo.Usuario;
 import controller.UsuarioController;
+import java.util.List;
 
-/**
- *
- * @author juane
- */
-
-/*
-
-@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_usuario", nullable = false)
-    private Integer idUsuario;
-    @Column(name = "documento")
-    private Integer documento;
-    @Column(name = "nombre", length = 45)
-    private String nombre;
-    @Column(name = "apellidos", length = 45)
-    private String apellidos;
-    @Column(name = "celular", length = 255)
-    private String celular;
-    @Column(name = "genero", length = 9)
-    private String genero;
-    @Column(name = "rh", length = 5)
-    private String rh;
-
-
-*/
 public class Main {
 
     static UsuarioController uControll = new UsuarioController();
-    
-    public static void main(String[] args) {
-        Usuario u = new Usuario(null, 125678, "karen", "tovar", "1234567890", "femenino", "o+");
-        uControll.create(u);
-    }
-    
-}
 
+    public static void main(String[] args) {
+        //Usuario
+        Usuario u = new Usuario(3, 125678, "juan", "tovar", "1234567890", "F", "T+");
+        Usuario u2 = new Usuario(5);
+
+        //uControll.create(u);
+        //uControll.update(u);
+        //uControll.delete(u2);
+        
+        List<Usuario> listaUsuario = uControll.findAll();
+        for (int i = 0; i < listaUsuario.size(); i++) {
+            System.out.println(listaUsuario.get(i));
+        }
+        
+        //
+    }
+
+}

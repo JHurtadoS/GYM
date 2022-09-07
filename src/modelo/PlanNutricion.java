@@ -53,6 +53,8 @@ public class PlanNutricion implements Serializable {
     public PlanNutricion() {
     }
 
+   
+
     public PlanNutricion(Integer id) {
         this.id = id;
     }
@@ -111,7 +113,16 @@ public class PlanNutricion implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.PlanNutricion[ id=" + id + " ]";
+        return "PlanNutricion{" + "id=" + id + ", tipoAlimentacion=" + tipoAlimentacion + ", alimentoCollection=" + alimentoCollection + ", consumidorCollection=" + consumidorCollection + '}';
     }
+
+
+
+    public PlanNutricion(Integer id, String tipoAlimentacion) {
+        this.id = id;
+        this.tipoAlimentacion = tipoAlimentacion;
+    }
+    
+    
     
 }
