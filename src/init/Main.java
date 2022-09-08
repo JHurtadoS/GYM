@@ -275,13 +275,7 @@ public class Main {
 
 
 
-        //rutcon.create(r);
-        //rutcon.update(r2);
-        //rutcon.delete(r3);
-        /*  List<Rutina> listaRutina = rutcon.findAll();
-        for (int i = 0; i < listaRutina.size(); i++) {
-            System.out.println(listaRutina.get(i));
-       }*/
+
         Credenciales cr = new Credenciales(null, "aksolanog@itc.edu.co", "perrito", u2);
         Credenciales cr2 = new Credenciales(5);
         Credenciales cr3 = new Credenciales(11);

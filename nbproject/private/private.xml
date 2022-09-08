@@ -3,14 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/modelo/HistorialActividades.java</file>
-            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/modelo/ActividadHasHerramienta.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/modelo/Peticiones.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/controller/HistorialActividadesController.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/controller/FuncionalController.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/controller/PlanNutricionController.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/controller/CredencialesController.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/controller/RutinaController.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/modelo/Rutina.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/modelo/Herramienta.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/controller/ConsumidorController.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/controller/ActividadControlller.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/controller/UsuarioController.java</file>
             <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/modelo/Evento.java</file>
-            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/modelo/Alimento.java</file>
             <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/init/Main.java</file>
             <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/modelo/Consumidor.java</file>
-            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/modelo/Actividad.java</file>
-            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/controller/ActividadControlller.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/modelo/Credenciales.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/controller/EventoController.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/controller/AlimentoController.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/controller/TipoController.java</file>
+            <file>file:/C:/Users/juane/OneDrive/Documentos/NetBeansProjects/Gym/src/controller/CitaController.java</file>
         </group>
     </open-files>
 </project-private>
