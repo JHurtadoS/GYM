@@ -4,7 +4,7 @@
  */
 package controller;
 
-import HerramientaDB;
+//import HerramientaDB;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

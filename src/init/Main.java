@@ -109,15 +109,16 @@ public class Main {
 
         Usuario u3 = new Usuario(2);
 
-        //uControll.create(u);
-        //uControll.update(u2);
-        /*
+        uControll.create(u);
+        uControll.update(u2);
+        
         uControll.delete(u3);
 
         List<Usuario> listaUsuario = uControll.findAll();
         for (int i = 0; i < listaUsuario.size(); i++) {
             System.out.println(listaUsuario.get(i));
-        }*/
+        }
+        
         //
         //Funcional 
         try {

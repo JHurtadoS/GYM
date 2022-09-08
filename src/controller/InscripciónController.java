@@ -7,12 +7,13 @@
 // se puede por ende adjuntar a la base de datos.
 package controller;
 
+import config.ConectionDB;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import modelo.Inscripcion;
 
-public class Inscripción {
+public class InscripciónController {
 
     private EntityManager entityManager() {
         return ConectionDB.getInstance().getFactory().createEntityManager();

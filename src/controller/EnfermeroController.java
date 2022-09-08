@@ -8,14 +8,14 @@
 */
 
 package controller;
-
+import modelo.Enfermero;
 import config.ConectionDB;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import modelo.Enfermero;
 
-public class Enfermero {
+
+public class EnfermeroController {
 
     private EntityManager entityManager() {
         return ConectionDB.getInstance().getFactory().createEntityManager();
