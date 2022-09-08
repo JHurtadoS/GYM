@@ -21,40 +21,57 @@ import javax.persistence.Table;
 
 /**
  *
- * @author juane
+ * @author FAMILIA TOVAR BUSTOS
  */
 @Entity
-@Table(name = "usuario", catalog = "gimnasio", schema = "")
+@Table(name = "usuario")
 @NamedQueries({
-    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")})
+    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
+    @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
+    @NamedQuery(name = "Usuario.findByDocumento", query = "SELECT u FROM Usuario u WHERE u.documento = :documento"),
+    @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
+    @NamedQuery(name = "Usuario.findByApellidos", query = "SELECT u FROM Usuario u WHERE u.apellidos = :apellidos"),
+    @NamedQuery(name = "Usuario.findByCelular", query = "SELECT u FROM Usuario u WHERE u.celular = :celular"),
+    @NamedQuery(name = "Usuario.findByGenero", query = "SELECT u FROM Usuario u WHERE u.genero = :genero"),
+    @NamedQuery(name = "Usuario.findByRh", query = "SELECT u FROM Usuario u WHERE u.rh = :rh")})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_usuario", nullable = false)
+    @Column(name = "id_usuario")
     private Integer idUsuario;
     @Column(name = "documento")
     private Integer documento;
-    @Column(name = "nombre", length = 45)
+    @Column(name = "nombre")
     private String nombre;
-    @Column(name = "apellidos", length = 45)
+    @Column(name = "apellidos")
     private String apellidos;
-    @Column(name = "celular", length = 255)
+    @Column(name = "celular")
     private String celular;
-    @Column(name = "genero", length = 9)
+    @Column(name = "genero")
     private String genero;
-    @Column(name = "rh", length = 5)
+    @Column(name = "rh")
     private String rh;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario", fetch = FetchType.LAZY)
     private Collection<Funcional> funcionalCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario", fetch = FetchType.LAZY)
     private Collection<Consumidor> consumidorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario", fetch = FetchType.LAZY)
     private Collection<Credenciales> credencialesCollection;
 
     public Usuario() {
+    }
+
+    public Usuario(Integer idUsuario, Integer documento, String nombre, String apellidos, String celular, String genero, String rh) {
+        this.idUsuario = idUsuario;
+        this.documento = documento;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.celular = celular;
+        this.genero = genero;
+        this.rh = rh;
     }
 
     public Usuario(Integer idUsuario) {
@@ -163,7 +180,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Modelo.Usuario[ idUsuario=" + idUsuario + " ]";
+        return "Usuario{" + "idUsuario=" + idUsuario + ", documento=" + documento + ", nombre=" + nombre + ", apellidos=" + apellidos + ", celular=" + celular + ", genero=" + genero + ", rh=" + rh + '}';
     }
     
 }
