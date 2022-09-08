@@ -32,11 +32,6 @@ import javax.persistence.Table;
     @NamedQuery(name = "Actividad.findByDescripcion", query = "SELECT a FROM Actividad a WHERE a.descripcion = :descripcion")})
 public class Actividad implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadId", fetch = FetchType.LAZY)
-    private Collection<Rutina> rutinaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadId", fetch = FetchType.LAZY)
-    private Collection<Evento> eventoCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,6 +43,10 @@ public class Actividad implements Serializable {
     @Column(name = "Descripcion")
     private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadId", fetch = FetchType.LAZY)
+    private Collection<Rutina> rutinaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadId", fetch = FetchType.LAZY)
+    private Collection<Evento> eventoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividadId", fetch = FetchType.LAZY)
     private Collection<HistorialActividades> historialActividadesCollection;
 
     public Actividad() {
@@ -58,7 +57,6 @@ public class Actividad implements Serializable {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
-    
 
     public Actividad(Integer id) {
         this.id = id;
@@ -86,6 +84,22 @@ public class Actividad implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Collection<Rutina> getRutinaCollection() {
+        return rutinaCollection;
+    }
+
+    public void setRutinaCollection(Collection<Rutina> rutinaCollection) {
+        this.rutinaCollection = rutinaCollection;
+    }
+
+    public Collection<Evento> getEventoCollection() {
+        return eventoCollection;
+    }
+
+    public void setEventoCollection(Collection<Evento> eventoCollection) {
+        this.eventoCollection = eventoCollection;
     }
 
     public Collection<HistorialActividades> getHistorialActividadesCollection() {
@@ -119,22 +133,6 @@ public class Actividad implements Serializable {
     @Override
     public String toString() {
         return "modelo.Actividad[ id=" + id + " ]";
-    }
-
-    public Collection<Rutina> getRutinaCollection() {
-        return rutinaCollection;
-    }
-
-    public void setRutinaCollection(Collection<Rutina> rutinaCollection) {
-        this.rutinaCollection = rutinaCollection;
-    }
-
-    public Collection<Evento> getEventoCollection() {
-        return eventoCollection;
-    }
-
-    public void setEventoCollection(Collection<Evento> eventoCollection) {
-        this.eventoCollection = eventoCollection;
     }
     
 }

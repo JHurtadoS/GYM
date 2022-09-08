@@ -67,9 +67,6 @@ public class Ejercicio implements Serializable {
         this.ncalorias = ncalorias;
     }
 
-
-    
-
     public Ejercicio(Integer id) {
         this.id = id;
     }
@@ -144,9 +141,7 @@ public class Ejercicio implements Serializable {
 
     @Override
     public String toString() {
-        return "Ejercicio{" + "id=" + id + ", videoAsociado=" + videoAsociado + ", nombre=" + nombre + ", tipo=" + tipo + ", ncalorias=" + ncalorias + '}';
+        return "modelo.Ejercicio[ id=" + id + " ]";
     }
-
-
     
 }

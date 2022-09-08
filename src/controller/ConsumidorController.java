@@ -21,6 +21,44 @@ public class ConsumidorController {
         return ConectionDB.getInstance().getFactory().createEntityManager();
     }
     
+        public void create(Consumidor obj) {
+        EntityManager em = this.entityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(obj);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            em.getTransaction().rollback();
+        }
+    }
+
+    public void update(Consumidor obj) {
+        EntityManager em = this.entityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(obj);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            em.getTransaction().rollback();
+        }
+    }
+
+    public void delete(Consumidor obj) {
+        EntityManager em = this.entityManager();
+        try {
+            em.getTransaction().begin();
+            em.remove(em.merge(obj));
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            em.getTransaction().rollback();
+        }
+    }
+
+    public List<Consumidor> findAll() {
+        Query qr = this.entityManager().createQuery("SELECT u FROM Instructor u");
+        return qr.getResultList();
+    }
+    
         public List<Consumidor>  FindConsumidorByid(int id){
         Query qr;
         qr = this.entityManager().createQuery("SELECT u FROM Consumidor u WHERE u.id="+id);

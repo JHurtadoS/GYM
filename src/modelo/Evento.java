@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -38,15 +38,6 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Evento.findByHoraSalida", query = "SELECT e FROM Evento e WHERE e.horaSalida = :horaSalida")})
 public class Evento implements Serializable {
 
-    @ManyToMany(mappedBy = "eventoCollection", fetch = FetchType.LAZY)
-    private Collection<Consumidor> consumidorCollection;
-    @JoinColumn(name = "instructor_Id", referencedColumnName = "Id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Instructor instructorId;
-    @JoinColumn(name = "Actividad_Id", referencedColumnName = "Id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Actividad actividadId;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,16 +55,26 @@ public class Evento implements Serializable {
     @Column(name = "hora_salida")
     @Temporal(TemporalType.TIME)
     private Date horaSalida;
+    @ManyToMany(mappedBy = "eventoCollection", fetch = FetchType.LAZY)
+    private Collection<Consumidor> consumidorCollection;
+    @JoinColumn(name = "instructor_Id", referencedColumnName = "Id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Instructor instructorId;
+    @JoinColumn(name = "Actividad_Id", referencedColumnName = "Id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Actividad actividadId;
 
     public Evento() {
     }
 
-    public Evento(Integer id, String nombre, Date fecha, Date horaInicio, Date horaSalida) {
+    public Evento(Integer id, String nombre, Date fecha, Date horaInicio, Date horaSalida, Instructor instructorId, Actividad actividadId) {
         this.id = id;
         this.nombre = nombre;
         this.fecha = fecha;
         this.horaInicio = horaInicio;
         this.horaSalida = horaSalida;
+        this.instructorId = instructorId;
+        this.actividadId = actividadId;
     }
 
     public Evento(Integer id) {
@@ -120,31 +121,6 @@ public class Evento implements Serializable {
         this.horaSalida = horaSalida;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Evento)) {
-            return false;
-        }
-        Evento other = (Evento) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "modelo.Evento[ id=" + id + " ]";
-    }
-
     public Collection<Consumidor> getConsumidorCollection() {
         return consumidorCollection;
     }
@@ -168,5 +144,32 @@ public class Evento implements Serializable {
     public void setActividadId(Actividad actividadId) {
         this.actividadId = actividadId;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Evento)) {
+            return false;
+        }
+        Evento other = (Evento) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Evento{" + "id=" + id + ", nombre=" + nombre + ", fecha=" + fecha + ", horaInicio=" + horaInicio + ", horaSalida=" + horaSalida + ", instructorId=" + instructorId + ", actividadId=" + actividadId + '}';
+    }
+
+
     
 }

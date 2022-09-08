@@ -34,6 +34,12 @@ import javax.persistence.Table;
     @NamedQuery(name = "Consumidor.findById", query = "SELECT c FROM Consumidor c WHERE c.id = :id")})
 public class Consumidor implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "Id")
+    private Integer id;
     @JoinTable(name = "consumidor_has_evento", joinColumns = {
         @JoinColumn(name = "consumidor_Id", referencedColumnName = "Id")}, inverseJoinColumns = {
         @JoinColumn(name = "evento_id", referencedColumnName = "Id")})
@@ -45,15 +51,6 @@ public class Consumidor implements Serializable {
     private Collection<HistorialActividades> historialActividadesCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "consumidorId", fetch = FetchType.LAZY)
     private Collection<Cita> citaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "consumidorId", fetch = FetchType.LAZY)
-    private Collection<Peticiones> peticionesCollection;
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "Id")
-    private Integer id;
     @JoinColumn(name = "plan_nutricion_Id", referencedColumnName = "Id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private PlanNutricion plannutricionId;
@@ -63,6 +60,8 @@ public class Consumidor implements Serializable {
     @JoinColumn(name = "id_Tipo", referencedColumnName = "Id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Tipo idTipo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "consumidorId", fetch = FetchType.LAZY)
+    private Collection<Peticiones> peticionesCollection;
 
     public Consumidor() {
     }
@@ -84,55 +83,6 @@ public class Consumidor implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public PlanNutricion getPlannutricionId() {
-        return plannutricionId;
-    }
-
-    public void setPlannutricionId(PlanNutricion plannutricionId) {
-        this.plannutricionId = plannutricionId;
-    }
-
-    public Usuario getUsuarioIdUsuario() {
-        return usuarioIdUsuario;
-    }
-
-    public void setUsuarioIdUsuario(Usuario usuarioIdUsuario) {
-        this.usuarioIdUsuario = usuarioIdUsuario;
-    }
-
-    public Tipo getIdTipo() {
-        return idTipo;
-    }
-
-    public void setIdTipo(Tipo idTipo) {
-        this.idTipo = idTipo;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Consumidor)) {
-            return false;
-        }
-        Consumidor other = (Consumidor) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "modelo.Consumidor[ id=" + id + " ]";
     }
 
     public Collection<Evento> getEventoCollection() {
@@ -167,6 +117,30 @@ public class Consumidor implements Serializable {
         this.citaCollection = citaCollection;
     }
 
+    public PlanNutricion getPlannutricionId() {
+        return plannutricionId;
+    }
+
+    public void setPlannutricionId(PlanNutricion plannutricionId) {
+        this.plannutricionId = plannutricionId;
+    }
+
+    public Usuario getUsuarioIdUsuario() {
+        return usuarioIdUsuario;
+    }
+
+    public void setUsuarioIdUsuario(Usuario usuarioIdUsuario) {
+        this.usuarioIdUsuario = usuarioIdUsuario;
+    }
+
+    public Tipo getIdTipo() {
+        return idTipo;
+    }
+
+    public void setIdTipo(Tipo idTipo) {
+        this.idTipo = idTipo;
+    }
+
     public Collection<Peticiones> getPeticionesCollection() {
         return peticionesCollection;
     }
@@ -174,5 +148,31 @@ public class Consumidor implements Serializable {
     public void setPeticionesCollection(Collection<Peticiones> peticionesCollection) {
         this.peticionesCollection = peticionesCollection;
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Consumidor)) {
+            return false;
+        }
+        Consumidor other = (Consumidor) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Consumidor{" + "id=" + id + ", plannutricionId=" + plannutricionId + ", usuarioIdUsuario=" + usuarioIdUsuario + ", idTipo=" + idTipo + '}';
+    }
+
+ 
 }

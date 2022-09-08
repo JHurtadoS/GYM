@@ -42,6 +42,11 @@ public class Peticiones implements Serializable {
     public Peticiones() {
     }
 
+    public Peticiones(Integer id, Consumidor consumidorId) {
+        this.id = id;
+        this.consumidorId = consumidorId;
+    }
+
     public Peticiones(Integer id) {
         this.id = id;
     }
@@ -84,7 +89,7 @@ public class Peticiones implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Peticiones[ id=" + id + " ]";
+        return "Peticiones{" + "id=" + id + ", consumidorId=" + consumidorId + '}';
     }
-    
+
 }

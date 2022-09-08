@@ -42,6 +42,13 @@ public class Tipo implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipo", fetch = FetchType.LAZY)
     private Collection<Consumidor> consumidorCollection;
 
+    public Tipo(Integer id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    
+    
     public Tipo() {
     }
 

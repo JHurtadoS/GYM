@@ -1,25 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package controller;
+package Controller;
+
 
 import config.ConectionDB;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import modelo.Actividad;
-
+import modelo.Cita;
 /**
  *
- * @author juane
+ * @author FAMILIA TOVAR BUSTOS
  */
-public class ActividadControlller {
-        private EntityManager entityManager() {
+public class CitaController {
+    private EntityManager entityManager() {
         return ConectionDB.getInstance().getFactory().createEntityManager();
     }
     
-     public void create(Actividad obj) {
+     public void create(Cita obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
@@ -30,7 +26,7 @@ public class ActividadControlller {
         }
     }
 
-    public void update(Actividad obj) {
+    public void update(Cita obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
@@ -41,7 +37,7 @@ public class ActividadControlller {
         }
     }
 
-    public void delete(Actividad obj) {
+    public void delete(Cita obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
@@ -52,8 +48,8 @@ public class ActividadControlller {
         }
     }
 
-    public List<Actividad> findAll() {
-        Query qr = this.entityManager().createQuery("SELECT u FROM Actividad u");
+    public List<Cita> findAll() {
+        Query qr = this.entityManager().createQuery("SELECT u FROM Cita u");
         return qr.getResultList();
     }
 }

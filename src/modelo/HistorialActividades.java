@@ -29,16 +29,15 @@ import javax.persistence.Table;
     @NamedQuery(name = "HistorialActividades.findById", query = "SELECT h FROM HistorialActividades h WHERE h.id = :id")})
 public class HistorialActividades implements Serializable {
 
-    @JoinColumn(name = "consumidor_Id", referencedColumnName = "Id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Consumidor consumidorId;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "Id")
     private Integer id;
+    @JoinColumn(name = "consumidor_Id", referencedColumnName = "Id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Consumidor consumidorId;
     @JoinColumn(name = "actividad_Id", referencedColumnName = "Id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Actividad actividadId;
@@ -46,12 +45,14 @@ public class HistorialActividades implements Serializable {
     public HistorialActividades() {
     }
 
-    public HistorialActividades(Integer id, Actividad actividadId) {
+    public HistorialActividades(Integer id, Consumidor consumidorId, Actividad actividadId) {
         this.id = id;
+        this.consumidorId = consumidorId;
         this.actividadId = actividadId;
     }
-
     
+    
+
     public HistorialActividades(Integer id) {
         this.id = id;
     }
@@ -62,6 +63,14 @@ public class HistorialActividades implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Consumidor getConsumidorId() {
+        return consumidorId;
+    }
+
+    public void setConsumidorId(Consumidor consumidorId) {
+        this.consumidorId = consumidorId;
     }
 
     public Actividad getActividadId() {
@@ -94,15 +103,9 @@ public class HistorialActividades implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.HistorialActividades[ id=" + id + " ]";
+        return "HistorialActividades{" + "id=" + id + ", consumidorId=" + consumidorId + ", actividadId=" + actividadId + '}';
     }
 
-    public Consumidor getConsumidorId() {
-        return consumidorId;
-    }
 
-    public void setConsumidorId(Consumidor consumidorId) {
-        this.consumidorId = consumidorId;
-    }
     
 }

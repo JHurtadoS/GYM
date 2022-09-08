@@ -57,6 +57,13 @@ public class Enfermero implements Serializable {
     public Enfermero() {
     }
 
+    public Enfermero(Integer id, String registroMedico, Date fechRegistro, Funcional funcionalId) {
+        this.id = id;
+        this.registroMedico = registroMedico;
+        this.fechRegistro = fechRegistro;
+        this.funcionalId = funcionalId;
+    }
+
     public Enfermero(Integer id) {
         this.id = id;
     }

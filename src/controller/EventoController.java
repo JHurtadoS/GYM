@@ -8,40 +8,42 @@ import config.ConectionDB;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import modelo.Actividad;
+import modelo.Evento;
 
 /**
  *
  * @author juane
  */
-public class ActividadControlller {
-        private EntityManager entityManager() {
+public class EventoController {
+    
+    private EntityManager entityManager() {
         return ConectionDB.getInstance().getFactory().createEntityManager();
     }
-    
-     public void create(Actividad obj) {
+
+    public void create(Evento evento) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
-            em.persist(obj);
+            em.persist(evento);
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();
         }
     }
 
-    public void update(Actividad obj) {
+    public void update(Evento evento) {
         EntityManager em = this.entityManager();
         try {
+            
             em.getTransaction().begin();
-            em.merge(obj);
+            em.merge(evento);
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();
         }
     }
 
-    public void delete(Actividad obj) {
+    public void delete(Evento obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
@@ -51,9 +53,11 @@ public class ActividadControlller {
             em.getTransaction().rollback();
         }
     }
+    
+    //
 
-    public List<Actividad> findAll() {
-        Query qr = this.entityManager().createQuery("SELECT u FROM Actividad u");
+    public List<Evento> findAll() {
+        Query qr = this.entityManager().createQuery("SELECT t FROM Evento t");
         return qr.getResultList();
     }
 }

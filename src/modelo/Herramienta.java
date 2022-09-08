@@ -14,7 +14,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -33,9 +32,6 @@ import javax.persistence.Table;
     @NamedQuery(name = "Herramienta.findByImagenAsociada", query = "SELECT h FROM Herramienta h WHERE h.imagenAsociada = :imagenAsociada")})
 public class Herramienta implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "herramientaId", fetch = FetchType.LAZY)
-    private Collection<ActividadHasHerramienta> actividadHasHerramientaCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,10 +42,16 @@ public class Herramienta implements Serializable {
     private String nombre;
     @Column(name = "ImagenAsociada")
     private String imagenAsociada;
-    @ManyToMany(mappedBy = "herramientaCollection", fetch = FetchType.LAZY)
-    private Collection<Rutina> rutinaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "herramientaId", fetch = FetchType.LAZY)
+    private Collection<ActividadHasHerramienta> actividadHasHerramientaCollection;
 
     public Herramienta() {
+    }
+
+    public Herramienta(Integer id, String nombre, String imagenAsociada) {
+        this.id = id;
+        this.nombre = nombre;
+        this.imagenAsociada = imagenAsociada;
     }
 
     public Herramienta(Integer id) {
@@ -80,12 +82,12 @@ public class Herramienta implements Serializable {
         this.imagenAsociada = imagenAsociada;
     }
 
-    public Collection<Rutina> getRutinaCollection() {
-        return rutinaCollection;
+    public Collection<ActividadHasHerramienta> getActividadHasHerramientaCollection() {
+        return actividadHasHerramientaCollection;
     }
 
-    public void setRutinaCollection(Collection<Rutina> rutinaCollection) {
-        this.rutinaCollection = rutinaCollection;
+    public void setActividadHasHerramientaCollection(Collection<ActividadHasHerramienta> actividadHasHerramientaCollection) {
+        this.actividadHasHerramientaCollection = actividadHasHerramientaCollection;
     }
 
     @Override
@@ -108,17 +110,10 @@ public class Herramienta implements Serializable {
         return true;
     }
 
-    @Override
+@Override
     public String toString() {
-        return "modelo.Herramienta[ id=" + id + " ]";
+        return "Herramienta{" + "id=" + id + ", nombre=" + nombre + ", imagenAsociada=" + imagenAsociada + '}';
     }
 
-    public Collection<ActividadHasHerramienta> getActividadHasHerramientaCollection() {
-        return actividadHasHerramientaCollection;
-    }
-
-    public void setActividadHasHerramientaCollection(Collection<ActividadHasHerramienta> actividadHasHerramientaCollection) {
-        this.actividadHasHerramientaCollection = actividadHasHerramientaCollection;
-    }
     
 }

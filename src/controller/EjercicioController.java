@@ -35,7 +35,7 @@ public class EjercicioController {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
-            em.persist(obj);
+            em.merge(obj);
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();

@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -36,9 +35,6 @@ import javax.persistence.Table;
     @NamedQuery(name = "Rutina.findByCantCalorias", query = "SELECT r FROM Rutina r WHERE r.cantCalorias = :cantCalorias")})
 public class Rutina implements Serializable {
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "rutina", fetch = FetchType.LAZY)
-    private ActividadHasHerramienta actividadHasHerramienta;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,19 +48,24 @@ public class Rutina implements Serializable {
     private Float cantCalorias;
     @ManyToMany(mappedBy = "rutinaCollection", fetch = FetchType.LAZY)
     private Collection<Ejercicio> ejercicioCollection;
-    @JoinTable(name = "actividad_has_herramienta", joinColumns = {
-        @JoinColumn(name = "actividad_id", referencedColumnName = "Id")}, inverseJoinColumns = {
-        @JoinColumn(name = "Herramienta_Id", referencedColumnName = "Id")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Collection<Herramienta> herramientaCollection;
     @JoinColumn(name = "cita_id", referencedColumnName = "Id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Cita citaId;
     @JoinColumn(name = "Actividad_Id", referencedColumnName = "Id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Actividad actividadId;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "rutina", fetch = FetchType.LAZY)
+    private ActividadHasHerramienta actividadHasHerramienta;
 
     public Rutina() {
+    }
+
+    public Rutina(Integer id, String tipRutina, Float cantCalorias, Cita citaId, Actividad actividadId) {
+        this.id = id;
+        this.tipRutina = tipRutina;
+        this.cantCalorias = cantCalorias;
+        this.citaId = citaId;
+        this.actividadId = actividadId;
     }
 
     public Rutina(Integer id) {
@@ -103,14 +104,6 @@ public class Rutina implements Serializable {
         this.ejercicioCollection = ejercicioCollection;
     }
 
-    public Collection<Herramienta> getHerramientaCollection() {
-        return herramientaCollection;
-    }
-
-    public void setHerramientaCollection(Collection<Herramienta> herramientaCollection) {
-        this.herramientaCollection = herramientaCollection;
-    }
-
     public Cita getCitaId() {
         return citaId;
     }
@@ -125,6 +118,14 @@ public class Rutina implements Serializable {
 
     public void setActividadId(Actividad actividadId) {
         this.actividadId = actividadId;
+    }
+
+    public ActividadHasHerramienta getActividadHasHerramienta() {
+        return actividadHasHerramienta;
+    }
+
+    public void setActividadHasHerramienta(ActividadHasHerramienta actividadHasHerramienta) {
+        this.actividadHasHerramienta = actividadHasHerramienta;
     }
 
     @Override
@@ -149,15 +150,7 @@ public class Rutina implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Rutina[ id=" + id + " ]";
+        return "Rutina{" + "id=" + id + ", tipRutina=" + tipRutina + ", cantCalorias=" + cantCalorias + ", citaId=" + citaId + ", actividadId=" + actividadId + '}';
     }
 
-    public ActividadHasHerramienta getActividadHasHerramienta() {
-        return actividadHasHerramienta;
-    }
-
-    public void setActividadHasHerramienta(ActividadHasHerramienta actividadHasHerramienta) {
-        this.actividadHasHerramienta = actividadHasHerramienta;
-    }
-    
 }

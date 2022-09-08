@@ -48,6 +48,13 @@ public class Credenciales implements Serializable {
     public Credenciales() {
     }
 
+    public Credenciales(Integer idCredenciales, String email, String contraseña, Usuario usuarioIdUsuario) {
+        this.idCredenciales = idCredenciales;
+        this.email = email;
+        this.contraseña = contraseña;
+        this.usuarioIdUsuario = usuarioIdUsuario;
+    }
+
     public Credenciales(Integer idCredenciales) {
         this.idCredenciales = idCredenciales;
     }
@@ -104,9 +111,11 @@ public class Credenciales implements Serializable {
         return true;
     }
 
-    @Override
+
+@Override
     public String toString() {
-        return "modelo.Credenciales[ idCredenciales=" + idCredenciales + " ]";
+        return "Credenciales{" + "idCredenciales=" + idCredenciales + ", email=" + email + ", contrase\u00f1a=" + contraseña + ", usuarioIdUsuario=" + usuarioIdUsuario + '}';
     }
+
     
 }

@@ -3,23 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controller;
-
 import config.ConectionDB;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import modelo.Actividad;
+import modelo.Credenciales;
 
-/**
- *
- * @author juane
- */
-public class ActividadControlller {
-        private EntityManager entityManager() {
+
+
+public class CredencialesController {
+
+    private EntityManager entityManager() {
         return ConectionDB.getInstance().getFactory().createEntityManager();
     }
-    
-     public void create(Actividad obj) {
+
+    public void create(Credenciales obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
@@ -30,30 +28,30 @@ public class ActividadControlller {
         }
     }
 
-    public void update(Actividad obj) {
+    public void update(Credenciales obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
-            em.merge(obj);
+            em.persist(obj);
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();
         }
     }
 
-    public void delete(Actividad obj) {
+    public void delete(Credenciales obj) {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
-            em.remove(em.merge(obj));
+            em.remove(obj);
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();
         }
     }
 
-    public List<Actividad> findAll() {
-        Query qr = this.entityManager().createQuery("SELECT u FROM Actividad u");
+    public List<Credenciales> findAll() {
+        Query qr = this.entityManager().createQuery("SELECT u FROM Credenciales u");
         return qr.getResultList();
     }
 }

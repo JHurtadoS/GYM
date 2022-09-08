@@ -55,6 +55,14 @@ public class Inscripcion implements Serializable {
     public Inscripcion() {
     }
 
+    public Inscripcion(Integer id, Date fecha, String documentodeinscripcion, Enfermero enfermeroId, Consumidor consumidorId) {
+        this.id = id;
+        this.fecha = fecha;
+        this.documentodeinscripcion = documentodeinscripcion;
+        this.enfermeroId = enfermeroId;
+        this.consumidorId = consumidorId;
+    }
+
     public Inscripcion(Integer id) {
         this.id = id;
     }

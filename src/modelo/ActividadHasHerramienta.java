@@ -46,6 +46,11 @@ public class ActividadHasHerramienta implements Serializable {
     public ActividadHasHerramienta() {
     }
 
+    public ActividadHasHerramienta(Rutina rutina, Herramienta herramientaId) {
+        this.rutina = rutina;
+        this.herramientaId = herramientaId;
+    }
+
     public ActividadHasHerramienta(Integer actividadId) {
         this.actividadId = actividadId;
     }

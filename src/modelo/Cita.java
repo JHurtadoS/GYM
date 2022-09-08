@@ -62,6 +62,14 @@ public class Cita implements Serializable {
     public Cita() {
     }
 
+    public Cita(Integer id, Date fecha, Date horaEntrada, Date horaSalida, Consumidor consumidorId) {
+        this.id = id;
+        this.fecha = fecha;
+        this.horaEntrada = horaEntrada;
+        this.horaSalida = horaSalida;
+        this.consumidorId = consumidorId;
+    }
+
     public Cita(Integer id) {
         this.id = id;
     }
