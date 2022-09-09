@@ -54,6 +54,8 @@ public class HistorialActividadesController {
 
     public List<HistorialActividades> findAll() {
         Query qr = this.entityManager().createQuery("SELECT u FROM HistorialActividades u");
+        // SELECT * FROM USUARIOS
+        
         return qr.getResultList();
     }
 }

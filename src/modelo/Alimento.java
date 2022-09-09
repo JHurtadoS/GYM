@@ -123,7 +123,9 @@ public class Alimento implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Alimento[ id=" + id + " ]";
+        return "Alimento{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagenasociada=" + imagenasociada + '}';
     }
+
+    
     
 }

@@ -116,7 +116,9 @@ public class PlanNutricion implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.PlanNutricion[ id=" + id + " ]";
+        return "PlanNutricion{" + "id=" + id + ", tipoAlimentacion=" + tipoAlimentacion + '}';
     }
+
+    
     
 }

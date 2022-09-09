@@ -105,14 +105,14 @@ public class Main {
         Date dateHora3 = time_to_date(hora3, prueba2);
 
         Usuario u = new Usuario(null, 125678, "karen", "tovar", "1222567890", "F", "O-");
-        Usuario u2 = new Usuario(3, 125678, "karen2", "tovar2", "1222567892", "F", "O-");
-
+        Usuario u2 = new Usuario(7, 125678, "karen3", "tovar3", "1223567892", "F", "O-");
+        Usuario u4 = new Usuario(7, 125678, "karen3", "tovar3", "1223567892", "F", "O-");   
         Usuario u3 = new Usuario(2);
 
-        uControll.create(u);
-        uControll.update(u2);
+        //uControll.create(u);
+        //uControll.update(u2);
         
-        uControll.delete(u3);
+        //uControll.delete(u3);
 
         List<Usuario> listaUsuario = uControll.findAll();
         for (int i = 0; i < listaUsuario.size(); i++) {
@@ -121,25 +121,26 @@ public class Main {
         
         //
         //Funcional 
-        try {
+        /*try {
             dateSalFun1 = sdf.parse(dateSalStringFun1);
             dateEntFun1 = sdf.parse(dateEntraStringFun1);
             dateSalFun2 = sdf.parse(dateSalStringFun2);
             dateEntFun2 = sdf.parse(dateEntraStringFun2);
         } catch (ParseException ex) {
             System.out.println(ex);
-        }
+        }*/
 
         Funcional fn = new Funcional(null, dateSalFun1, dateEntFun1, u2);
-        Funcional fn2 = new Funcional(1, dateSalFun2, dateEntFun2, u);
+        Funcional fn2 = new Funcional(2, dateSalFun2, dateEntFun2, u4);
         Funcional fn3 = FunControll.FindFuncionalByid(2).get(0);
         Funcional fn4 = FunControll.FindFuncionalByid(6).get(0);
-        //FunControll.create(fn);
-        /*
+        
+       // FunControll.create(fn);
+        
         //FunControll.update(fn2);
        
         //FunControll.delete(fn3);
-        
+        /*
          */
         //actividad
 
@@ -306,8 +307,9 @@ public class Main {
         Peticiones p = new Peticiones(null, con1);
         Peticiones p2 = new Peticiones(5);
         Peticiones p3 = new Peticiones(11);
-/*
+
         petController.create(p);
+        /*
         petController.update(p2);
         petController.delete(p3);
 
@@ -318,12 +320,12 @@ public class Main {
 
         //Rutina
         Rutina run = new Rutina(null, "tonificar", 1.500f, cit2, actividad2);
-        Rutina run2 = new Rutina(5);
-        Rutina run3 = new Rutina(11);
+        Rutina run2 = new Rutina(3, "tonificar 2", 1.600f, cit2, actividad2);
+        Rutina run3 = new Rutina(3);
 
-       // runController.create(run);
-       // runController.update(run2);
-       // runController.delete(run3);
+        //runController.create(run);
+        //runController.update(run2);
+        //runController.delete(run2);
 
         /*List<Rutina> listaRutina = runController.findAll();
         for (int i = 0; i < listaRutina.size(); i++) {

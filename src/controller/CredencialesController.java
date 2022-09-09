@@ -32,7 +32,7 @@ public class CredencialesController {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
-            em.persist(obj);
+            em.merge(obj);
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();
@@ -43,7 +43,7 @@ public class CredencialesController {
         EntityManager em = this.entityManager();
         try {
             em.getTransaction().begin();
-            em.remove(obj);
+            em.remove(em.merge(obj));
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();
