@@ -7,15 +7,16 @@ package modelo;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -25,11 +26,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "alimento")
 @NamedQueries({
-    @NamedQuery(name = "Alimento.findAll", query = "SELECT a FROM Alimento a"),
-    @NamedQuery(name = "Alimento.findById", query = "SELECT a FROM Alimento a WHERE a.id = :id"),
-    @NamedQuery(name = "Alimento.findByNombre", query = "SELECT a FROM Alimento a WHERE a.nombre = :nombre"),
-    @NamedQuery(name = "Alimento.findByDescripcion", query = "SELECT a FROM Alimento a WHERE a.descripcion = :descripcion"),
-    @NamedQuery(name = "Alimento.findByImagenasociada", query = "SELECT a FROM Alimento a WHERE a.imagenasociada = :imagenasociada")})
+    @NamedQuery(name = "Alimento.findAll", query = "SELECT a FROM Alimento a")})
 public class Alimento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,8 +41,8 @@ public class Alimento implements Serializable {
     private String descripcion;
     @Column(name = "Imagen_asociada")
     private String imagenasociada;
-    @ManyToMany(mappedBy = "alimentoCollection", fetch = FetchType.LAZY)
-    private Collection<PlanNutricion> planNutricionCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "alimentoId", fetch = FetchType.LAZY)
+    private Collection<AlimentosDelPlanDeNutricion> alimentosDelPlanDeNutricionCollection;
 
     public Alimento() {
     }
@@ -93,12 +90,12 @@ public class Alimento implements Serializable {
         this.imagenasociada = imagenasociada;
     }
 
-    public Collection<PlanNutricion> getPlanNutricionCollection() {
-        return planNutricionCollection;
+    public Collection<AlimentosDelPlanDeNutricion> getAlimentosDelPlanDeNutricionCollection() {
+        return alimentosDelPlanDeNutricionCollection;
     }
 
-    public void setPlanNutricionCollection(Collection<PlanNutricion> planNutricionCollection) {
-        this.planNutricionCollection = planNutricionCollection;
+    public void setAlimentosDelPlanDeNutricionCollection(Collection<AlimentosDelPlanDeNutricion> alimentosDelPlanDeNutricionCollection) {
+        this.alimentosDelPlanDeNutricionCollection = alimentosDelPlanDeNutricionCollection;
     }
 
     @Override
@@ -123,9 +120,7 @@ public class Alimento implements Serializable {
 
     @Override
     public String toString() {
-        return "Alimento{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagenasociada=" + imagenasociada + '}';
+        return "modelo.Alimento[ id=" + id + " ]";
     }
-
-    
     
 }

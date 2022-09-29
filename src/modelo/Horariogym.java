@@ -5,28 +5,28 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author juane
  */
 @Entity
-@Table(name = "peticiones")
+@Table(name = "horariogym")
 @NamedQueries({
-    @NamedQuery(name = "Peticiones.findAll", query = "SELECT p FROM Peticiones p")})
-public class Peticiones implements Serializable {
+    @NamedQuery(name = "Horariogym.findAll", query = "SELECT h FROM Horariogym h")})
+public class Horariogym implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,19 +34,17 @@ public class Peticiones implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id")
     private Integer id;
-    @JoinColumn(name = "consumidor_Id", referencedColumnName = "Id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Consumidor consumidorId;
+    @Column(name = "Hora de cierre")
+    @Temporal(TemporalType.TIME)
+    private Date horadecierre;
+    @Column(name = "Hora de Abertura")
+    @Temporal(TemporalType.TIME)
+    private Date horadeAbertura;
 
-    public Peticiones() {
+    public Horariogym() {
     }
 
-    public Peticiones(Integer id, Consumidor consumidorId) {
-        this.id = id;
-        this.consumidorId = consumidorId;
-    }
-
-    public Peticiones(Integer id) {
+    public Horariogym(Integer id) {
         this.id = id;
     }
 
@@ -58,12 +56,20 @@ public class Peticiones implements Serializable {
         this.id = id;
     }
 
-    public Consumidor getConsumidorId() {
-        return consumidorId;
+    public Date getHoradecierre() {
+        return horadecierre;
     }
 
-    public void setConsumidorId(Consumidor consumidorId) {
-        this.consumidorId = consumidorId;
+    public void setHoradecierre(Date horadecierre) {
+        this.horadecierre = horadecierre;
+    }
+
+    public Date getHoradeAbertura() {
+        return horadeAbertura;
+    }
+
+    public void setHoradeAbertura(Date horadeAbertura) {
+        this.horadeAbertura = horadeAbertura;
     }
 
     @Override
@@ -76,10 +82,10 @@ public class Peticiones implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Peticiones)) {
+        if (!(object instanceof Horariogym)) {
             return false;
         }
-        Peticiones other = (Peticiones) object;
+        Horariogym other = (Horariogym) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -88,7 +94,7 @@ public class Peticiones implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Peticiones[ id=" + id + " ]";
+        return "modelo.Horariogym[ id=" + id + " ]";
     }
     
 }

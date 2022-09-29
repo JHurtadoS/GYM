@@ -62,6 +62,7 @@ public class ConsumidorController {
         public List<Consumidor>  FindConsumidorByid(int id){
         Query qr;
         qr = this.entityManager().createQuery("SELECT u FROM Consumidor u WHERE u.id="+id);
+        
         //qr.setParameter("IdVal", id);
         return qr.getResultList();
     }

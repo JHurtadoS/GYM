@@ -30,8 +30,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "consumidor")
 @NamedQueries({
-    @NamedQuery(name = "Consumidor.findAll", query = "SELECT c FROM Consumidor c"),
-    @NamedQuery(name = "Consumidor.findById", query = "SELECT c FROM Consumidor c WHERE c.id = :id")})
+    @NamedQuery(name = "Consumidor.findAll", query = "SELECT c FROM Consumidor c")})
 public class Consumidor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,11 +39,13 @@ public class Consumidor implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id")
     private Integer id;
-    @JoinTable(name = "consumidor_has_evento", joinColumns = {
+    @JoinTable(name = "participantes evento", joinColumns = {
         @JoinColumn(name = "consumidor_Id", referencedColumnName = "Id")}, inverseJoinColumns = {
         @JoinColumn(name = "evento_id", referencedColumnName = "Id")})
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Evento> eventoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "consumidorId", fetch = FetchType.LAZY)
+    private Collection<Actividad> actividadCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "consumidorId", fetch = FetchType.LAZY)
     private Collection<Inscripcion> inscripcionCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "consumidorId", fetch = FetchType.LAZY)
@@ -91,6 +92,14 @@ public class Consumidor implements Serializable {
 
     public void setEventoCollection(Collection<Evento> eventoCollection) {
         this.eventoCollection = eventoCollection;
+    }
+
+    public Collection<Actividad> getActividadCollection() {
+        return actividadCollection;
+    }
+
+    public void setActividadCollection(Collection<Actividad> actividadCollection) {
+        this.actividadCollection = actividadCollection;
     }
 
     public Collection<Inscripcion> getInscripcionCollection() {
@@ -171,8 +180,7 @@ public class Consumidor implements Serializable {
 
     @Override
     public String toString() {
-        return "Consumidor{" + "id=" + id + ", plannutricionId=" + plannutricionId + ", usuarioIdUsuario=" + usuarioIdUsuario + ", idTipo=" + idTipo + '}';
+        return "modelo.Consumidor[ id=" + id + " ]";
     }
-
- 
+    
 }

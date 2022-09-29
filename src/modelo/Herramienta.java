@@ -26,10 +26,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "herramienta")
 @NamedQueries({
-    @NamedQuery(name = "Herramienta.findAll", query = "SELECT h FROM Herramienta h"),
-    @NamedQuery(name = "Herramienta.findById", query = "SELECT h FROM Herramienta h WHERE h.id = :id"),
-    @NamedQuery(name = "Herramienta.findByNombre", query = "SELECT h FROM Herramienta h WHERE h.nombre = :nombre"),
-    @NamedQuery(name = "Herramienta.findByImagenAsociada", query = "SELECT h FROM Herramienta h WHERE h.imagenAsociada = :imagenAsociada")})
+    @NamedQuery(name = "Herramienta.findAll", query = "SELECT h FROM Herramienta h")})
 public class Herramienta implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,7 +40,7 @@ public class Herramienta implements Serializable {
     @Column(name = "ImagenAsociada")
     private String imagenAsociada;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "herramientaId", fetch = FetchType.LAZY)
-    private Collection<ActividadHasHerramienta> actividadHasHerramientaCollection;
+    private Collection<HerramientasRutina> herramientasRutinaCollection;
 
     public Herramienta() {
     }
@@ -52,6 +49,11 @@ public class Herramienta implements Serializable {
         this.id = id;
         this.nombre = nombre;
         this.imagenAsociada = imagenAsociada;
+    }
+
+    public Herramienta(Integer id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
     }
 
     public Herramienta(Integer id) {
@@ -82,12 +84,12 @@ public class Herramienta implements Serializable {
         this.imagenAsociada = imagenAsociada;
     }
 
-    public Collection<ActividadHasHerramienta> getActividadHasHerramientaCollection() {
-        return actividadHasHerramientaCollection;
+    public Collection<HerramientasRutina> getHerramientasRutinaCollection() {
+        return herramientasRutinaCollection;
     }
 
-    public void setActividadHasHerramientaCollection(Collection<ActividadHasHerramienta> actividadHasHerramientaCollection) {
-        this.actividadHasHerramientaCollection = actividadHasHerramientaCollection;
+    public void setHerramientasRutinaCollection(Collection<HerramientasRutina> herramientasRutinaCollection) {
+        this.herramientasRutinaCollection = herramientasRutinaCollection;
     }
 
     @Override
@@ -110,10 +112,9 @@ public class Herramienta implements Serializable {
         return true;
     }
 
-@Override
+    @Override
     public String toString() {
-        return "Herramienta{" + "id=" + id + ", nombre=" + nombre + ", imagenAsociada=" + imagenAsociada + '}';
+        return "modelo.Herramienta[ id=" + id + " ]";
     }
-
     
 }

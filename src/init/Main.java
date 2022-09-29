@@ -95,7 +95,7 @@ public class Main {
         Date dateSalFun2 = new Date();
         Date dateEntFun2 = new Date();
 
-        //Usuario
+
         LocalTime hora1 = LocalTime.of(20, 20, 20, 0);
         LocalTime hora2 = LocalTime.of(10, 20, 20, 0);
         LocalTime hora3 = LocalTime.of(2, 10, 20, 0);
@@ -104,6 +104,7 @@ public class Main {
         Date dateHora2 = time_to_date(hora2, prueba1);
         Date dateHora3 = time_to_date(hora3, prueba2);
 
+       //Usuario
         Usuario u = new Usuario(null, 125678, "karen", "tovar", "1222567890", "F", "O-");
         Usuario u2 = new Usuario(7, 125678, "karen3", "tovar3", "1223567892", "F", "O-");
         Usuario u4 = new Usuario(7, 125678, "karen3", "tovar3", "1223567892", "F", "O-");   

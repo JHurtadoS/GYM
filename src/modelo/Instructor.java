@@ -28,8 +28,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "instructor")
 @NamedQueries({
-    @NamedQuery(name = "Instructor.findAll", query = "SELECT i FROM Instructor i"),
-    @NamedQuery(name = "Instructor.findById", query = "SELECT i FROM Instructor i WHERE i.id = :id")})
+    @NamedQuery(name = "Instructor.findAll", query = "SELECT i FROM Instructor i")})
 public class Instructor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,8 +50,6 @@ public class Instructor implements Serializable {
         this.id = id;
         this.funcionalId = funcionalId;
     }
-    
-    
 
     public Instructor(Integer id) {
         this.id = id;

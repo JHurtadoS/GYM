@@ -14,12 +14,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -29,9 +27,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "plan_nutricion")
 @NamedQueries({
-    @NamedQuery(name = "PlanNutricion.findAll", query = "SELECT p FROM PlanNutricion p"),
-    @NamedQuery(name = "PlanNutricion.findById", query = "SELECT p FROM PlanNutricion p WHERE p.id = :id"),
-    @NamedQuery(name = "PlanNutricion.findByTipoAlimentacion", query = "SELECT p FROM PlanNutricion p WHERE p.tipoAlimentacion = :tipoAlimentacion")})
+    @NamedQuery(name = "PlanNutricion.findAll", query = "SELECT p FROM PlanNutricion p")})
 public class PlanNutricion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,24 +38,21 @@ public class PlanNutricion implements Serializable {
     private Integer id;
     @Column(name = "tipo_alimentacion")
     private String tipoAlimentacion;
-    @JoinTable(name = "plan_nutricion_has_alimento", joinColumns = {
-        @JoinColumn(name = "plan_nutricion_id_plan_nutricion", referencedColumnName = "Id")}, inverseJoinColumns = {
-        @JoinColumn(name = "Alimento_Id", referencedColumnName = "Id")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Collection<Alimento> alimentoCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "planNutricion", fetch = FetchType.LAZY)
+    private AlimentosDelPlanDeNutricion alimentosDelPlanDeNutricion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "plannutricionId", fetch = FetchType.LAZY)
     private Collection<Consumidor> consumidorCollection;
 
     public PlanNutricion() {
     }
 
+    public PlanNutricion(Integer id) {
+        this.id = id;
+    }
+
     public PlanNutricion(Integer id, String tipoAlimentacion) {
         this.id = id;
         this.tipoAlimentacion = tipoAlimentacion;
-    }
-
-    public PlanNutricion(Integer id) {
-        this.id = id;
     }
 
     public Integer getId() {
@@ -78,12 +71,12 @@ public class PlanNutricion implements Serializable {
         this.tipoAlimentacion = tipoAlimentacion;
     }
 
-    public Collection<Alimento> getAlimentoCollection() {
-        return alimentoCollection;
+    public AlimentosDelPlanDeNutricion getAlimentosDelPlanDeNutricion() {
+        return alimentosDelPlanDeNutricion;
     }
 
-    public void setAlimentoCollection(Collection<Alimento> alimentoCollection) {
-        this.alimentoCollection = alimentoCollection;
+    public void setAlimentosDelPlanDeNutricion(AlimentosDelPlanDeNutricion alimentosDelPlanDeNutricion) {
+        this.alimentosDelPlanDeNutricion = alimentosDelPlanDeNutricion;
     }
 
     public Collection<Consumidor> getConsumidorCollection() {
@@ -116,9 +109,7 @@ public class PlanNutricion implements Serializable {
 
     @Override
     public String toString() {
-        return "PlanNutricion{" + "id=" + id + ", tipoAlimentacion=" + tipoAlimentacion + '}';
+        return "modelo.PlanNutricion[ id=" + id + " ]";
     }
-
-    
     
 }

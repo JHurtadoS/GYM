@@ -31,11 +31,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "cita")
 @NamedQueries({
-    @NamedQuery(name = "Cita.findAll", query = "SELECT c FROM Cita c"),
-    @NamedQuery(name = "Cita.findById", query = "SELECT c FROM Cita c WHERE c.id = :id"),
-    @NamedQuery(name = "Cita.findByFecha", query = "SELECT c FROM Cita c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "Cita.findByHoraEntrada", query = "SELECT c FROM Cita c WHERE c.horaEntrada = :horaEntrada"),
-    @NamedQuery(name = "Cita.findByHoraSalida", query = "SELECT c FROM Cita c WHERE c.horaSalida = :horaSalida")})
+    @NamedQuery(name = "Cita.findAll", query = "SELECT c FROM Cita c")})
 public class Cita implements Serializable {
 
     private static final long serialVersionUID = 1L;

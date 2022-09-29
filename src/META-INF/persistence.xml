@@ -39,6 +39,34 @@
     <class>modelo.Enfermero</class>
     <class>modelo.Actividad</class>
     <class>modelo.ActividadHasHerramienta</class>
+    <class>modelo.PlanNutricionHasAlimento</class>
+    <class>modelo.EjerciciosHasRutina</class>
+    <class>modelo.ConsumidorHasEvento</class>
+    <class>modelo.HerramientasRutina</class>
+    <class>modelo.EjerciciosDeLaRutina</class>
+    <class>modelo.Actividad_1</class>
+    <class>modelo.Alimento_1</class>
+    <class>modelo.Herramienta_1</class>
+    <class>modelo.EjerciciosDeLaRutina_1</class>
+    <class>modelo.Ejercicio_1</class>
+    <class>modelo.PlanNutricion_1</class>
+    <class>modelo.Credenciales_1</class>
+    <class>modelo.HistorialActividades_1</class>
+    <class>modelo.Consumidor_1</class>
+    <class>modelo.Rutina_1</class>
+    <class>modelo.Evento_1</class>
+    <class>modelo.Enfermero_1</class>
+    <class>modelo.AlimentosDelPlanDeNutricion</class>
+    <class>modelo.Cita_1</class>
+    <class>modelo.HerramientasRutina_1</class>
+    <class>modelo.Funcional_1</class>
+    <class>modelo.Inscripcion_1</class>
+    <class>modelo.Tipo_1</class>
+    <class>modelo.Instructor_1</class>
+    <class>modelo.Peticiones_1</class>
+    <class>modelo.Usuario_1</class>
+    <class>modelo.Formulario</class>
+    <class>modelo.Horariogym</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gimnasio?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

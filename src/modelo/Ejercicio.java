@@ -7,17 +7,16 @@ package modelo;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -27,13 +26,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ejercicio")
 @NamedQueries({
-    @NamedQuery(name = "Ejercicio.findAll", query = "SELECT e FROM Ejercicio e"),
-    @NamedQuery(name = "Ejercicio.findById", query = "SELECT e FROM Ejercicio e WHERE e.id = :id"),
-    @NamedQuery(name = "Ejercicio.findByVideoAsociado", query = "SELECT e FROM Ejercicio e WHERE e.videoAsociado = :videoAsociado"),
-    @NamedQuery(name = "Ejercicio.findByNombre", query = "SELECT e FROM Ejercicio e WHERE e.nombre = :nombre"),
-    @NamedQuery(name = "Ejercicio.findByTipo", query = "SELECT e FROM Ejercicio e WHERE e.tipo = :tipo"),
-    @NamedQuery(name = "Ejercicio.findByNcalorias", query = "SELECT e FROM Ejercicio e WHERE e.ncalorias = :ncalorias")})
+    @NamedQuery(name = "Ejercicio.findAll", query = "SELECT e FROM Ejercicio e")})
 public class Ejercicio implements Serializable {
+
+    public Ejercicio(Integer id, String videoAsociado, String nombre, String tipo, Float ncalorias) {
+        this.id = id;
+        this.videoAsociado = videoAsociado;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.ncalorias = ncalorias;
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -50,21 +52,10 @@ public class Ejercicio implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "Ncalorias")
     private Float ncalorias;
-    @JoinTable(name = "ejercicios_has_rutina", joinColumns = {
-        @JoinColumn(name = "Ejercicios_Id", referencedColumnName = "Id")}, inverseJoinColumns = {
-        @JoinColumn(name = "Rutina_id", referencedColumnName = "Id")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Collection<Rutina> rutinaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ejerciciosId", fetch = FetchType.LAZY)
+    private Collection<EjerciciosDeLaRutina> ejerciciosDeLaRutinaCollection;
 
     public Ejercicio() {
-    }
-
-    public Ejercicio(Integer id, String videoAsociado, String nombre, String tipo, Float ncalorias) {
-        this.id = id;
-        this.videoAsociado = videoAsociado;
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.ncalorias = ncalorias;
     }
 
     public Ejercicio(Integer id) {
@@ -111,12 +102,12 @@ public class Ejercicio implements Serializable {
         this.ncalorias = ncalorias;
     }
 
-    public Collection<Rutina> getRutinaCollection() {
-        return rutinaCollection;
+    public Collection<EjerciciosDeLaRutina> getEjerciciosDeLaRutinaCollection() {
+        return ejerciciosDeLaRutinaCollection;
     }
 
-    public void setRutinaCollection(Collection<Rutina> rutinaCollection) {
-        this.rutinaCollection = rutinaCollection;
+    public void setEjerciciosDeLaRutinaCollection(Collection<EjerciciosDeLaRutina> ejerciciosDeLaRutinaCollection) {
+        this.ejerciciosDeLaRutinaCollection = ejerciciosDeLaRutinaCollection;
     }
 
     @Override
@@ -141,9 +132,7 @@ public class Ejercicio implements Serializable {
 
     @Override
     public String toString() {
-        return "Ejercicio{" + "id=" + id + ", videoAsociado=" + videoAsociado + ", nombre=" + nombre + ", tipo=" + tipo + ", ncalorias=" + ncalorias + '}';
+        return "modelo.Ejercicio[ id=" + id + " ]";
     }
-
-   
     
 }

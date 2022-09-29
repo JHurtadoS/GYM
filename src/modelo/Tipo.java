@@ -26,9 +26,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tipo")
 @NamedQueries({
-    @NamedQuery(name = "Tipo.findAll", query = "SELECT t FROM Tipo t"),
-    @NamedQuery(name = "Tipo.findById", query = "SELECT t FROM Tipo t WHERE t.id = :id"),
-    @NamedQuery(name = "Tipo.findByNombre", query = "SELECT t FROM Tipo t WHERE t.nombre = :nombre")})
+    @NamedQuery(name = "Tipo.findAll", query = "SELECT t FROM Tipo t")})
 public class Tipo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,14 +40,12 @@ public class Tipo implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipo", fetch = FetchType.LAZY)
     private Collection<Consumidor> consumidorCollection;
 
+    public Tipo() {
+    }
+
     public Tipo(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-    }
-
-    
-    
-    public Tipo() {
     }
 
     public Tipo(Integer id) {
@@ -102,9 +98,7 @@ public class Tipo implements Serializable {
 
     @Override
     public String toString() {
-        return "Tipo{" + "id=" + id + ", nombre=" + nombre + '}';
+        return "modelo.Tipo[ id=" + id + " ]";
     }
-
-   
     
 }

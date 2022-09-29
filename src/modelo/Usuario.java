@@ -26,15 +26,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "usuario")
 @NamedQueries({
-    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-    @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
-    @NamedQuery(name = "Usuario.findByDocumento", query = "SELECT u FROM Usuario u WHERE u.documento = :documento"),
-    @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
-    @NamedQuery(name = "Usuario.findByApellidos", query = "SELECT u FROM Usuario u WHERE u.apellidos = :apellidos"),
-    @NamedQuery(name = "Usuario.findByCelular", query = "SELECT u FROM Usuario u WHERE u.celular = :celular"),
-    @NamedQuery(name = "Usuario.findByGenero", query = "SELECT u FROM Usuario u WHERE u.genero = :genero"),
-    @NamedQuery(name = "Usuario.findByRh", query = "SELECT u FROM Usuario u WHERE u.rh = :rh")})
+    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")})
 public class Usuario implements Serializable {
+
+    public Usuario(Integer idUsuario, Integer documento, String nombre, String apellidos, String celular, String genero, String rh) {
+        this.idUsuario = idUsuario;
+        this.documento = documento;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.celular = celular;
+        this.genero = genero;
+        this.rh = rh;
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -62,16 +65,6 @@ public class Usuario implements Serializable {
     private Collection<Credenciales> credencialesCollection;
 
     public Usuario() {
-    }
-
-    public Usuario(Integer idUsuario, Integer documento, String nombre, String apellidos, String celular, String genero, String rh) {
-        this.idUsuario = idUsuario;
-        this.documento = documento;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.celular = celular;
-        this.genero = genero;
-        this.rh = rh;
     }
 
     public Usuario(Integer idUsuario) {
@@ -180,9 +173,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" + "idUsuario=" + idUsuario + ", documento=" + documento + ", nombre=" + nombre + ", apellidos=" + apellidos + ", celular=" + celular + ", genero=" + genero + ", rh=" + rh + '}';
+        return "modelo.Usuario[ idUsuario=" + idUsuario + " ]";
     }
-
-   
     
 }

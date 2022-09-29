@@ -1,4 +1,4 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -30,12 +30,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "evento")
 @NamedQueries({
-    @NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e"),
-    @NamedQuery(name = "Evento.findById", query = "SELECT e FROM Evento e WHERE e.id = :id"),
-    @NamedQuery(name = "Evento.findByNombre", query = "SELECT e FROM Evento e WHERE e.nombre = :nombre"),
-    @NamedQuery(name = "Evento.findByFecha", query = "SELECT e FROM Evento e WHERE e.fecha = :fecha"),
-    @NamedQuery(name = "Evento.findByHoraInicio", query = "SELECT e FROM Evento e WHERE e.horaInicio = :horaInicio"),
-    @NamedQuery(name = "Evento.findByHoraSalida", query = "SELECT e FROM Evento e WHERE e.horaSalida = :horaSalida")})
+    @NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e")})
 public class Evento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,11 +39,6 @@ public class Evento implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id")
     private Integer id;
-    @Column(name = "nombre")
-    private String nombre;
-    @Column(name = "fecha")
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
     @Column(name = "hora_inicio")
     @Temporal(TemporalType.TIME)
     private Date horaInicio;
@@ -67,10 +57,8 @@ public class Evento implements Serializable {
     public Evento() {
     }
 
-    public Evento(Integer id, String nombre, Date fecha, Date horaInicio, Date horaSalida, Instructor instructorId, Actividad actividadId) {
+    public Evento(Integer id, Date horaInicio, Date horaSalida, Instructor instructorId, Actividad actividadId) {
         this.id = id;
-        this.nombre = nombre;
-        this.fecha = fecha;
         this.horaInicio = horaInicio;
         this.horaSalida = horaSalida;
         this.instructorId = instructorId;
@@ -87,22 +75,6 @@ public class Evento implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
     }
 
     public Date getHoraInicio() {
@@ -167,9 +139,7 @@ public class Evento implements Serializable {
 
     @Override
     public String toString() {
-        return "Evento{" + "id=" + id + ", nombre=" + nombre + ", fecha=" + fecha + ", horaInicio=" + horaInicio + ", horaSalida=" + horaSalida + ", instructorId=" + instructorId + ", actividadId=" + actividadId + '}';
+        return "modelo.Evento[ id=" + id + " ]";
     }
-
-
     
 }

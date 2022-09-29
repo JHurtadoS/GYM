@@ -31,10 +31,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "enfermero")
 @NamedQueries({
-    @NamedQuery(name = "Enfermero.findAll", query = "SELECT e FROM Enfermero e"),
-    @NamedQuery(name = "Enfermero.findById", query = "SELECT e FROM Enfermero e WHERE e.id = :id"),
-    @NamedQuery(name = "Enfermero.findByRegistroMedico", query = "SELECT e FROM Enfermero e WHERE e.registroMedico = :registroMedico"),
-    @NamedQuery(name = "Enfermero.findByFechRegistro", query = "SELECT e FROM Enfermero e WHERE e.fechRegistro = :fechRegistro")})
+    @NamedQuery(name = "Enfermero.findAll", query = "SELECT e FROM Enfermero e")})
 public class Enfermero implements Serializable {
 
     private static final long serialVersionUID = 1L;

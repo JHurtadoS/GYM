@@ -31,10 +31,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "funcional")
 @NamedQueries({
-    @NamedQuery(name = "Funcional.findAll", query = "SELECT f FROM Funcional f"),
-    @NamedQuery(name = "Funcional.findById", query = "SELECT f FROM Funcional f WHERE f.id = :id"),
-    @NamedQuery(name = "Funcional.findByHoraDeEntrada", query = "SELECT f FROM Funcional f WHERE f.horaDeEntrada = :horaDeEntrada"),
-    @NamedQuery(name = "Funcional.findByHoraDeSalida", query = "SELECT f FROM Funcional f WHERE f.horaDeSalida = :horaDeSalida")})
+    @NamedQuery(name = "Funcional.findAll", query = "SELECT f FROM Funcional f")})
 public class Funcional implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,17 +57,16 @@ public class Funcional implements Serializable {
     public Funcional() {
     }
 
+    public Funcional(Integer id) {
+        this.id = id;
+    }
+
     public Funcional(Integer id, Date horaDeEntrada, Date horaDeSalida, Usuario usuarioIdUsuario) {
         this.id = id;
         this.horaDeEntrada = horaDeEntrada;
         this.horaDeSalida = horaDeSalida;
         this.usuarioIdUsuario = usuarioIdUsuario;
-    }
-
-    
-    
-    public Funcional(Integer id) {
-        this.id = id;
+        this.enfermeroCollection = enfermeroCollection;
     }
 
     public Integer getId() {

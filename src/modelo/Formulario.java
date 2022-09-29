@@ -8,12 +8,9 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -23,10 +20,10 @@ import javax.persistence.Table;
  * @author juane
  */
 @Entity
-@Table(name = "peticiones")
+@Table(name = "formulario")
 @NamedQueries({
-    @NamedQuery(name = "Peticiones.findAll", query = "SELECT p FROM Peticiones p")})
-public class Peticiones implements Serializable {
+    @NamedQuery(name = "Formulario.findAll", query = "SELECT f FROM Formulario f")})
+public class Formulario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,19 +31,15 @@ public class Peticiones implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id")
     private Integer id;
-    @JoinColumn(name = "consumidor_Id", referencedColumnName = "Id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Consumidor consumidorId;
+    @Column(name = "Link")
+    private String link;
+    @Column(name = "Nombre")
+    private String nombre;
 
-    public Peticiones() {
+    public Formulario() {
     }
 
-    public Peticiones(Integer id, Consumidor consumidorId) {
-        this.id = id;
-        this.consumidorId = consumidorId;
-    }
-
-    public Peticiones(Integer id) {
+    public Formulario(Integer id) {
         this.id = id;
     }
 
@@ -58,12 +51,20 @@ public class Peticiones implements Serializable {
         this.id = id;
     }
 
-    public Consumidor getConsumidorId() {
-        return consumidorId;
+    public String getLink() {
+        return link;
     }
 
-    public void setConsumidorId(Consumidor consumidorId) {
-        this.consumidorId = consumidorId;
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @Override
@@ -76,10 +77,10 @@ public class Peticiones implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Peticiones)) {
+        if (!(object instanceof Formulario)) {
             return false;
         }
-        Peticiones other = (Peticiones) object;
+        Formulario other = (Formulario) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -88,7 +89,7 @@ public class Peticiones implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Peticiones[ id=" + id + " ]";
+        return "modelo.Formulario[ id=" + id + " ]";
     }
     
 }

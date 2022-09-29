@@ -25,10 +25,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "credenciales")
 @NamedQueries({
-    @NamedQuery(name = "Credenciales.findAll", query = "SELECT c FROM Credenciales c"),
-    @NamedQuery(name = "Credenciales.findByIdCredenciales", query = "SELECT c FROM Credenciales c WHERE c.idCredenciales = :idCredenciales"),
-    @NamedQuery(name = "Credenciales.findByEmail", query = "SELECT c FROM Credenciales c WHERE c.email = :email"),
-    @NamedQuery(name = "Credenciales.findByContrase\u00f1a", query = "SELECT c FROM Credenciales c WHERE c.contrase\u00f1a = :contrase\u00f1a")})
+    @NamedQuery(name = "Credenciales.findAll", query = "SELECT c FROM Credenciales c")})
 public class Credenciales implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -111,11 +108,9 @@ public class Credenciales implements Serializable {
         return true;
     }
 
-
-@Override
+    @Override
     public String toString() {
-        return "Credenciales{" + "idCredenciales=" + idCredenciales + ", email=" + email + ", contrase\u00f1a=" + contraseña + ", usuarioIdUsuario=" + usuarioIdUsuario + '}';
+        return "modelo.Credenciales[ idCredenciales=" + idCredenciales + " ]";
     }
-
     
 }

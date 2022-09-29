@@ -5,7 +5,6 @@
 package modelo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -29,13 +27,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "rutina")
 @NamedQueries({
-    @NamedQuery(name = "Rutina.findAll", query = "SELECT r FROM Rutina r"),
-    @NamedQuery(name = "Rutina.findById", query = "SELECT r FROM Rutina r WHERE r.id = :id"),
-    @NamedQuery(name = "Rutina.findByTipRutina", query = "SELECT r FROM Rutina r WHERE r.tipRutina = :tipRutina"),
-    @NamedQuery(name = "Rutina.findByCantCalorias", query = "SELECT r FROM Rutina r WHERE r.cantCalorias = :cantCalorias")})
+    @NamedQuery(name = "Rutina.findAll", query = "SELECT r FROM Rutina r")})
 public class Rutina implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public Rutina(Integer id, String tipRutina, Float cantCalorias, Cita citaId, Actividad actividadId, EjerciciosDeLaRutina ejerciciosDeLaRutina, HerramientasRutina herramientasRutina) {
+        this.id = id;
+        this.tipRutina = tipRutina;
+        this.cantCalorias = cantCalorias;
+        this.citaId = citaId;
+        this.actividadId = actividadId;
+        this.ejerciciosDeLaRutina = ejerciciosDeLaRutina;
+        this.herramientasRutina = herramientasRutina;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -46,26 +51,18 @@ public class Rutina implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "cant_calorias")
     private Float cantCalorias;
-    @ManyToMany(mappedBy = "rutinaCollection", fetch = FetchType.LAZY)
-    private Collection<Ejercicio> ejercicioCollection;
     @JoinColumn(name = "cita_id", referencedColumnName = "Id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Cita citaId;
-    @JoinColumn(name = "Actividad_Id", referencedColumnName = "Id")
+    @JoinColumn(name = "actividad_Id", referencedColumnName = "Id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Actividad actividadId;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "rutina", fetch = FetchType.LAZY)
-    private ActividadHasHerramienta actividadHasHerramienta;
+    private EjerciciosDeLaRutina ejerciciosDeLaRutina;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "rutina", fetch = FetchType.LAZY)
+    private HerramientasRutina herramientasRutina;
 
     public Rutina() {
-    }
-
-    public Rutina(Integer id, String tipRutina, Float cantCalorias, Cita citaId, Actividad actividadId) {
-        this.id = id;
-        this.tipRutina = tipRutina;
-        this.cantCalorias = cantCalorias;
-        this.citaId = citaId;
-        this.actividadId = actividadId;
     }
 
     public Rutina(Integer id) {
@@ -96,14 +93,6 @@ public class Rutina implements Serializable {
         this.cantCalorias = cantCalorias;
     }
 
-    public Collection<Ejercicio> getEjercicioCollection() {
-        return ejercicioCollection;
-    }
-
-    public void setEjercicioCollection(Collection<Ejercicio> ejercicioCollection) {
-        this.ejercicioCollection = ejercicioCollection;
-    }
-
     public Cita getCitaId() {
         return citaId;
     }
@@ -120,12 +109,20 @@ public class Rutina implements Serializable {
         this.actividadId = actividadId;
     }
 
-    public ActividadHasHerramienta getActividadHasHerramienta() {
-        return actividadHasHerramienta;
+    public EjerciciosDeLaRutina getEjerciciosDeLaRutina() {
+        return ejerciciosDeLaRutina;
     }
 
-    public void setActividadHasHerramienta(ActividadHasHerramienta actividadHasHerramienta) {
-        this.actividadHasHerramienta = actividadHasHerramienta;
+    public void setEjerciciosDeLaRutina(EjerciciosDeLaRutina ejerciciosDeLaRutina) {
+        this.ejerciciosDeLaRutina = ejerciciosDeLaRutina;
+    }
+
+    public HerramientasRutina getHerramientasRutina() {
+        return herramientasRutina;
+    }
+
+    public void setHerramientasRutina(HerramientasRutina herramientasRutina) {
+        this.herramientasRutina = herramientasRutina;
     }
 
     @Override
@@ -150,7 +147,7 @@ public class Rutina implements Serializable {
 
     @Override
     public String toString() {
-        return "Rutina{" + "id=" + id + ", tipRutina=" + tipRutina + ", cantCalorias=" + cantCalorias + ", citaId=" + citaId + ", actividadId=" + actividadId + '}';
+        return "modelo.Rutina[ id=" + id + " ]";
     }
-
+    
 }
