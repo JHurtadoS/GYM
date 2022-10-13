@@ -184,47 +184,39 @@
     </div>
   </br></br></br></br></br></br>
 
-
-<div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel"></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-      <form id="formUsuarios">    
-          <div class="modal-body">
-              <div class="form-group">
-              <label for="Documento" class="col-form-label">Documento:</label>
-              <input type="text" class="form-control" id="Documento">
-              </div>
-              <div class="form-group">
-              <label for="Nombre" class="col-form-label">Nombre:</label>
-              <input type="text" class="form-control" id="Nombre">
-              </div>                
-              <div class="form-group">
-              <label for="Apellido" class="col-form-label">Apellido: </label>
-              <input type="text" class="form-control" id="Apellido">
-              </div> 
-              <div class="form-group">
-              <label for="Celular" class="col-form-label">Celular: </label>
-              <input type="number" class="form-control" id="Celular">
-              </div> 
-              <div class="form-group">
-              <label for="Genero" class="col-form-label">Genero: </label>
-              <input type="text" class="form-control" id="Genero">
-              </div> 
-              <div class="form-group">
-              <label for="Rh" class="col-form-label">Rh: </label>
-              <input type="text" class="form-control" id="Rh">
-              </div>            
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
-              <button type="submit" id="btnGuardar" class="btn btn-dark">Guardar</button>
-          </div>
-      </form>    
+  <form id="formUsuarios" action="" method="post">    
+    <div class="modal-body">
+        <div class="form-group col-md-6">
+        <label for="Documento" class="col-form-label-lg">Documento:</label>
+        <input type="number" class="form-control" id="Documento" required>
+        </div>
+        <div class="form-group col-md-6">
+        <label for="Nombre" class="col-form-label-lg">Nombre:</label>
+        <input type="text" class="form-control" id="Nombre" required>
+        </div>                
+        <div class="form-group col-md-6">
+        <label for="Apellido" class="col-form-label-lg">Apellido: </label>
+        <input type="text" class="form-control" id="Apellido" required>
+        </div> 
+        <div class="form-group col-md-6">
+        <label for="Celular" class="col-form-label-lg">Celular: </label>
+        <input type="number" class="form-control" id="Celular" required>
+        </div> 
+        <div class="form-group col-md-6">
+        <label for="Genero" class="col-form-label-lg">Genero: </label>
+        <input type="text" class="form-control" id="Genero" required>
+        </div> 
+        <div class="form-group col-md-6">
+        <label for="Rh" class="col-form-label-lg">Rh: </label>
+        <input type="text" class="form-control" id="Rh" required>
+        </div>            
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+        <button type="submit" id="btnGuardar" class="btn btn-dark">Guardar</button>
+    </div>
+</form>    
+    
       </div>
   </div>
 </div>  
